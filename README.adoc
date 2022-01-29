@@ -9,11 +9,20 @@ image::https://img.shields.io/badge/code_style-alchemists-brightgreen.svg[Alchem
 [link=https://circleci.com/gh/bkuhlmann/spek]
 image::https://circleci.com/gh/bkuhlmann/spek.svg?style=svg[Circle CI Status]
 
+Spek is short for _specification_ and enhances Ruby gem
+link:https://guides.rubygems.org/specification-reference[specifications] with additional information
+and tooling. You can use this library as foundational support to build on top of with your own
+enhancements.
+
 toc::[]
 
 == Features
 
-== Screencasts
+* Supports finding gems by name.
+* Supports loading gems by path to specification.
+* Supports picking gems by name with optional version selection.
+* Supports link:https://semver.org[semantic versions] via
+  link:https://www.alchemists.io/projects/versionaire[Versionaire].
 
 == Requirements
 
@@ -29,6 +38,86 @@ bin/setup
 ----
 
 == Usage
+
+This gem makes interacting with Ruby gems easier by providing foundational objects for which you can
+built on top of. link:https://www.alchemists.io/projects/gemsmith[Gemsmith] is built on top of this
+gem if you need working example.
+
+=== Presenter
+
+This object wraps a `Gem::Specification` for presentation, provides semantic versioning, direct
+access to metadata information, pathnames, and other enriched information. You can obtain an
+instance via the following code:
+
+[source,ruby]
+----
+specification = Gem::Specification.new do |spec|
+  spec.name = "test"
+  spec.version = "0.0.0"
+  spec.authors = "Jill Smith"
+  spec.summary = "A test summary."
+end
+
+presenter = Spek::Presenter.new specification
+----
+
+The presenter is a read-only object so you'll only have access to _getter_ methods which are mostly
+documented link:https://guides.rubygems.org/specification-reference[here]. Please note that not all
+methods map one-to-one so you'll want to look at the public API of this object for further details.
+
+=== Loader
+
+When given a path to a gem specification file, the loader will load a gem specification for you.
+Example:
+
+[source,ruby]
+----
+presenter = Spek::Loader.call "path/to/my/test.gemspec"
+presenter.class  # Spek::Presenter
+----
+
+=== Finder
+
+The finder will find all gem specifications for a given name. Example:
+
+[source,ruby]
+----
+presenters = Spek::Finder.call "refinements"
+presenters.map(&:class)  # [Spek::Presenter]
+----
+
+=== Picker
+
+When given a gem name, this will allow you pick from a list of gem versions if any. Otherwise, if
+multiple versions don't exist, the first version found will be answered instead. Example:
+
+[source,ruby]
+----
+require "dry/monads"
+
+include Dry::Monads[:result]
+
+case Spek::Picker.call("refinements")
+  in Success(specification) then puts "You selected: #{specification.name}."
+  in Failure(error) then puts error
+end
+----
+
+The picker always answers a link:https://dry-rb.org/gems/dry-monads[monad] so you can quickly
+pattern match for further action.
+
+=== Versioner
+
+When given a version and path, the versioner will update the version of your gem specification.
+Example:
+
+[source,ruby]
+----
+specification = Spek::Versioner.call "1.0.0", "path/to/my/test.gemspec"
+specification.version  # <struct Versionaire::Version major=1, minor=0, patch=0>
+----
+
+This makes it easier to automate the updating of your gem specification version information.
 
 == Development
 
@@ -62,5 +151,5 @@ bundle exec rake
 
 == Credits
 
-* Built with link:https://www.alchemists.io/projects/rubysmith[Rubysmith].
+* Built with link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
 * Engineered by link:https://www.alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].
