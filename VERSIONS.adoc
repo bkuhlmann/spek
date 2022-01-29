@@ -1,5 +1,14 @@
 = Versions
 
-== 0.0.0 (2022-01-28)
+== 0.0.0 (2022-01-29)
 
-* Added initial implementation.
+* Added Dry Monads gem - Brooke Kuhlmann
+* Added Versionaire gem - Brooke Kuhlmann
+* Added finder - Brooke Kuhlmann
+* Added gem summary - Brooke Kuhlmann
+* Added loader - Brooke Kuhlmann
+* Added picker - Brooke Kuhlmann
+* Added presenter - Brooke Kuhlmann
+* Added project documentation - Brooke Kuhlmann
+* Added project skeleton - Brooke Kuhlmann
+* Added versioner - Brooke Kuhlmann
