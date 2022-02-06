@@ -4,11 +4,6 @@
 
 = Spek
 
-[link=https://www.alchemists.io/projects/code_quality]
-image::https://img.shields.io/badge/code_style-alchemists-brightgreen.svg[Alchemists Style Guide]
-[link=https://circleci.com/gh/bkuhlmann/spek]
-image::https://circleci.com/gh/bkuhlmann/spek.svg?style=svg[Circle CI Status]
-
 Spek is short for _specification_ and enhances Ruby gem
 link:https://guides.rubygems.org/specification-reference[specifications] with additional information
 and tooling. You can use this library as foundational support to build on top of with your own
