@@ -52,7 +52,7 @@ RSpec.describe Spek::Picker do
 
       it "fails with message" do
         result = picker.call "test"
-        expect(result.failure).to eq("Unknown gem or gem is not installed: test.")
+        expect(result.failure).to eq("Unknown or uninstalled gem: test.")
       end
     end
   end

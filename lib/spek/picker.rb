@@ -20,7 +20,7 @@ module Spek
       case specifications.size
         when 1 then Success specifications.first
         when 2.. then Success choose(specifications)
-        else Failure "Unknown gem or gem is not installed: #{name}."
+        else Failure "Unknown or uninstalled gem: #{name}."
       end
     end
 
