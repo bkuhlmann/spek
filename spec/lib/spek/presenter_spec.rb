@@ -188,7 +188,7 @@ RSpec.describe Spek::Presenter do
 
   describe "#license" do
     it "answers nil when undefined" do
-      expect(presenter.license).to eq(nil)
+      expect(presenter.license).to be_nil
     end
 
     it "answers custom license" do
@@ -267,12 +267,12 @@ RSpec.describe Spek::Presenter do
 
   describe "#rubygems_mfa?" do
     it "answers false" do
-      expect(presenter.rubygems_mfa?).to eq(false)
+      expect(presenter.rubygems_mfa?).to be(false)
     end
 
     it "answers true with metadata" do
       specification.metadata["rubygems_mfa_required"] = "true"
-      expect(presenter.rubygems_mfa?).to eq(true)
+      expect(presenter.rubygems_mfa?).to be(true)
     end
   end
 
