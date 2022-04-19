@@ -188,7 +188,7 @@ RSpec.describe Spek::Presenter do
 
   describe "#license" do
     it "answers nil when undefined" do
-      expect(presenter.license).to be_nil
+      expect(presenter.license).to be(nil)
     end
 
     it "answers custom license" do
