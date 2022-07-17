@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = "~> 3.1"
   spec.add_dependency "dry-monads", "~> 1.4"
-  spec.add_dependency "refinements", "~> 9.4"
+  spec.add_dependency "refinements", "~> 9.6"
   spec.add_dependency "versionaire", "~> 10.3"
   spec.add_dependency "zeitwerk", "~> 2.5"
 
