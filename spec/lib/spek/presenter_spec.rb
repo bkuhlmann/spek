@@ -181,8 +181,32 @@ RSpec.describe Spek::Presenter do
   end
 
   describe "#labeled_version" do
-    it "answers label and version" do
+    it "answers default label and version" do
       expect(presenter.labeled_version).to eq("Undefined 0.0.0")
+    end
+
+    it "answers custom label and version" do
+      specification.metadata["label"] = "Test"
+      specification.version = "1.2.3"
+
+      expect(presenter.labeled_version).to eq("Test 1.2.3")
+    end
+
+    it "answers version only when label is missing" do
+      specification.metadata["label"] = nil
+      expect(presenter.labeled_version).to eq("0.0.0")
+    end
+
+    it "answers default label and version when version is missing" do
+      allow(specification).to receive(:version).and_return nil
+      expect(presenter.labeled_version).to eq("Undefined 0.0.0")
+    end
+
+    it "answers version only when name and version is missing" do
+      specification.metadata["label"] = nil
+      allow(specification).to receive(:version).and_return nil
+
+      expect(presenter.labeled_version).to eq("0.0.0")
     end
   end
 
@@ -215,14 +239,48 @@ RSpec.describe Spek::Presenter do
   end
 
   describe "#named_version" do
-    it "answers name and version" do
+    it "answers default name and version" do
       expect(presenter.named_version).to eq("test 0.0.0")
+    end
+
+    it "answers version only when name is missing" do
+      specification.name = nil
+      expect(presenter.named_version).to eq("0.0.0")
+    end
+
+    it "answers name and default version when version is missing" do
+      allow(specification).to receive(:version).and_return nil
+      expect(presenter.named_version).to eq("test 0.0.0")
+    end
+
+    it "answers version only when name and version is missing" do
+      specification.name = nil
+      allow(specification).to receive(:version).and_return nil
+
+      expect(presenter.named_version).to eq("0.0.0")
     end
   end
 
   describe "#package_name" do
-    it "answers file name" do
+    it "answers default file name" do
       expect(presenter.package_name).to eq("test-0.0.0.gem")
+    end
+
+    it "answers version only when name is missing" do
+      specification.name = nil
+      expect(presenter.package_name).to eq("0.0.0.gem")
+    end
+
+    it "answers name and default version when version is missing" do
+      allow(specification).to receive(:version).and_return nil
+      expect(presenter.package_name).to eq("test-0.0.0.gem")
+    end
+
+    it "answers version only when name and version is missing" do
+      specification.name = nil
+      allow(specification).to receive(:version).and_return nil
+
+      expect(presenter.package_name).to eq("0.0.0.gem")
     end
   end
 

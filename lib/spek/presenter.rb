@@ -57,11 +57,11 @@ module Spek
 
     def labeled_summary(delimiter: " - ") = [label, summary].compress.join delimiter
 
-    def labeled_version = "#{label} #{version}"
+    def labeled_version = [label, version].compress.join " "
 
-    def named_version = "#{name} #{version}"
+    def named_version = [name, version].compress.join " "
 
-    def package_name = "#{name}-#{version}.gem"
+    def package_name = %(#{[name, version].compress.join "-"}.gem)
 
     def package_path = Pathname("tmp").join package_name
 
