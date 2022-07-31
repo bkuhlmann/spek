@@ -31,6 +31,10 @@ module Spek
       summary
     ] => :record
 
+    def self.with_default record = nil, model: Gem::Specification
+      record && record.is_a?(model) ? new(record) : new(model.new)
+    end
+
     def initialize record
       @record = record
     end

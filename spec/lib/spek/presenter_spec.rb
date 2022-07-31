@@ -16,6 +16,20 @@ RSpec.describe Spek::Presenter do
     end
   end
 
+  describe ".with_default" do
+    it "answers defaults when no record is given" do
+      expect(described_class.with_default.named_version).to eq("0.0.0")
+    end
+
+    it "answers defaults when unknown type is given" do
+      expect(described_class.with_default(Object.new).named_version).to eq("0.0.0")
+    end
+
+    it "answers specifics when valid record is given" do
+      expect(described_class.with_default(specification).named_version).to eq("test 0.0.0")
+    end
+  end
+
   describe "#allowed_push_host" do
     it "answers RubyGems host with no metadata" do
       expect(presenter.allowed_push_host).to eq("https://rubygems.org")
