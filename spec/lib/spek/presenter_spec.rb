@@ -16,36 +16,14 @@ RSpec.describe Spek::Presenter do
     end
   end
 
-  describe "#bindir" do
-    it "answers default directory" do
-      expect(presenter.bindir).to eq("bin")
+  describe "#allowed_push_host" do
+    it "answers RubyGems host with no metadata" do
+      expect(presenter.allowed_push_host).to eq("https://rubygems.org")
     end
 
-    it "answers custom directory" do
-      specification.bindir = "exe"
-      expect(presenter.bindir).to eq("exe")
-    end
-  end
-
-  describe "#executables" do
-    it "answers empty array when undefined" do
-      expect(presenter.executables).to eq([])
-    end
-
-    it "answers custom executables" do
-      specification.executables << "test"
-      expect(presenter.executables).to contain_exactly("test")
-    end
-  end
-
-  describe "#authors" do
-    it "answers array with authors" do
-      expect(presenter.authors).to contain_exactly("Jill Smith")
-    end
-
-    it "answers empty array with no authors" do
-      specification.author = nil
-      expect(presenter.authors).to eq([])
+    it "answers custom host with metadata" do
+      specification.metadata["allowed_push_host"] = "https://push.example.com"
+      expect(presenter.allowed_push_host).to eq("https://push.example.com")
     end
   end
 
@@ -60,14 +38,25 @@ RSpec.describe Spek::Presenter do
     end
   end
 
-  describe "#allowed_push_host" do
-    it "answers RubyGems host with no metadata" do
-      expect(presenter.allowed_push_host).to eq("https://rubygems.org")
+  describe "#authors" do
+    it "answers array with authors" do
+      expect(presenter.authors).to contain_exactly("Jill Smith")
     end
 
-    it "answers custom host with metadata" do
-      specification.metadata["allowed_push_host"] = "https://push.example.com"
-      expect(presenter.allowed_push_host).to eq("https://push.example.com")
+    it "answers empty array with no authors" do
+      specification.author = nil
+      expect(presenter.authors).to eq([])
+    end
+  end
+
+  describe "#bindir" do
+    it "answers default directory" do
+      expect(presenter.bindir).to eq("bin")
+    end
+
+    it "answers custom directory" do
+      specification.bindir = "exe"
+      expect(presenter.bindir).to eq("exe")
     end
   end
 
@@ -93,17 +82,6 @@ RSpec.describe Spek::Presenter do
     end
   end
 
-  describe "#extra_rdoc_files" do
-    it "answers empty array when undefined" do
-      expect(presenter.extra_rdoc_files).to eq([])
-    end
-
-    it "answers custom array" do
-      specification.extra_rdoc_files = Dir["README*", "LICENSE*"]
-      expect(presenter.extra_rdoc_files).to eq(["README.adoc", "LICENSE.adoc"])
-    end
-  end
-
   describe "#emails" do
     it "answers empty array with no email" do
       expect(presenter.emails).to eq([])
@@ -112,6 +90,28 @@ RSpec.describe Spek::Presenter do
     it "answers array with emails" do
       specification.email = ["jill@example.com", "jon@example.com"]
       expect(presenter.emails).to contain_exactly("jill@example.com", "jon@example.com")
+    end
+  end
+
+  describe "#executables" do
+    it "answers empty array when undefined" do
+      expect(presenter.executables).to eq([])
+    end
+
+    it "answers custom executables" do
+      specification.executables << "test"
+      expect(presenter.executables).to contain_exactly("test")
+    end
+  end
+
+  describe "#extra_rdoc_files" do
+    it "answers empty array when undefined" do
+      expect(presenter.extra_rdoc_files).to eq([])
+    end
+
+    it "answers custom array" do
+      specification.extra_rdoc_files = Dir["README*", "LICENSE*"]
+      expect(presenter.extra_rdoc_files).to eq(["README.adoc", "LICENSE.adoc"])
     end
   end
 
@@ -220,15 +220,15 @@ RSpec.describe Spek::Presenter do
     end
   end
 
-  describe "#package_path" do
-    it "answers relative path" do
-      expect(presenter.package_path).to eq(Pathname("tmp/test-0.0.0.gem"))
-    end
-  end
-
   describe "#package_name" do
     it "answers file name" do
       expect(presenter.package_name).to eq("test-0.0.0.gem")
+    end
+  end
+
+  describe "#package_path" do
+    it "answers relative path" do
+      expect(presenter.package_path).to eq(Pathname("tmp/test-0.0.0.gem"))
     end
   end
 

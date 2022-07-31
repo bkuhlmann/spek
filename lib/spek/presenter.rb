@@ -35,9 +35,9 @@ module Spek
       @record = record
     end
 
-    def allowed_push_key = metadata.fetch "allowed_push_key", "rubygems_api_key"
-
     def allowed_push_host = metadata.fetch "allowed_push_host", ::Gem::DEFAULT_HOST
+
+    def allowed_push_key = metadata.fetch "allowed_push_key", "rubygems_api_key"
 
     def authors = Array record.author
 
@@ -61,9 +61,9 @@ module Spek
 
     def named_version = "#{name} #{version}"
 
-    def package_path = Pathname("tmp").join package_name
-
     def package_name = "#{name}-#{version}.gem"
+
+    def package_path = Pathname("tmp").join package_name
 
     def rubygems_mfa? = metadata.fetch("rubygems_mfa_required", "false").to_bool
 
