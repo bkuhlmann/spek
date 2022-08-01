@@ -10,7 +10,7 @@ module Spek
       @presenter = presenter
     end
 
-    def call(path) = client.load(path.to_s).then { |record| presenter.new record }
+    def call(path) = client.load(path.to_s).then { |record| presenter.with_default record }
 
     private
 

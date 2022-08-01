@@ -10,7 +10,7 @@ module Spek
       @presenter = presenter
     end
 
-    def call(name) = client.find_all_by_name(name).map { |record| presenter.new record }
+    def call(name) = client.find_all_by_name(name).map { |record| presenter.with_default record }
 
     private
 
