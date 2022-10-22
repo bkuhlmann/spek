@@ -1,5 +1,17 @@
 = Versions
 
+== 0.6.0 (2022-10-22)
+
+* Fixed Rakefile RSpec initialization - Brooke Kuhlmann
+* Fixed SimpleCov Guard interaction - Brooke Kuhlmann
+* Fixed SimpleCov gem requirement to not be required by default - Brooke Kuhlmann
+* Updated README sections - Brooke Kuhlmann
+* Updated to Caliber 0.16.0 - Brooke Kuhlmann
+* Updated to Dry Monads 1.5.0 - Brooke Kuhlmann
+* Updated to Refinements 9.7.0 - Brooke Kuhlmann
+* Updated to Versionaire 10.6.0 - Brooke Kuhlmann
+* Updated to Zeitwerk 2.6.0 - Brooke Kuhlmann
+
 == 0.5.0 (2022-08-01)
 
 * Fixed presenter labeled and named versions and package concatenation - Brooke Kuhlmann
