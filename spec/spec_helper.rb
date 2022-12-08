@@ -13,8 +13,8 @@ unless ENV["NO_COVERAGE"]
   end
 end
 
-require "spek"
 require "refinements"
+require "spek"
 
 using Refinements::Pathnames
 
