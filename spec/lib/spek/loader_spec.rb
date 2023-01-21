@@ -9,7 +9,7 @@ RSpec.describe Spek::Loader do
   subject(:loader) { described_class.new }
 
   describe ".call" do
-    let(:path) { Bundler.root.join "spec/support/fixtures/test.gemspec" }
+    let(:path) { SPEC_ROOT.join "support/fixtures/test.gemspec" }
 
     it "answers specification" do
       expect(described_class.call(path)).to have_attributes(
@@ -20,7 +20,7 @@ RSpec.describe Spek::Loader do
   end
 
   describe "#call" do
-    let(:path) { Bundler.root.join "spec/support/fixtures/test.gemspec" }
+    let(:path) { SPEC_ROOT.join "support/fixtures/test.gemspec" }
 
     it "answers specification" do
       loader.call path

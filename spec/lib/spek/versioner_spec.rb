@@ -12,7 +12,7 @@ RSpec.describe Spek::Versioner do
 
   include_context "with temporary directory"
 
-  let(:fixture_path) { Bundler.root.join "spec/support/fixtures/test.gemspec" }
+  let(:fixture_path) { SPEC_ROOT.join "support/fixtures/test.gemspec" }
   let(:spec_path) { temp_dir.join "test.gemspec" }
 
   before { fixture_path.copy spec_path }

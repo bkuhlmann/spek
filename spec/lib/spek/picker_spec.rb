@@ -7,7 +7,7 @@ RSpec.describe Spek::Picker do
 
   let(:kernel) { class_spy Kernel }
   let(:finder) { instance_double Spek::Finder }
-  let(:fixture_path) { Bundler.root.join "spec/support/fixtures/test.gemspec" }
+  let(:fixture_path) { SPEC_ROOT.join "support/fixtures/test.gemspec" }
 
   describe ".call" do
     before { allow(finder).to receive(:call).and_return([specification]) }
