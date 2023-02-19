@@ -5,14 +5,14 @@ Gem::Specification.new do |spec|
   spec.version = "1.0.1"
   spec.authors = ["Brooke Kuhlmann"]
   spec.email = ["brooke@alchemists.io"]
-  spec.homepage = "https://www.alchemists.io/projects/spek"
+  spec.homepage = "https://alchemists.io/projects/spek"
   spec.summary = "Enhances gem specifications with additional information and tooling."
   spec.license = "Hippocratic-2.1"
 
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/bkuhlmann/spek/issues",
-    "changelog_uri" => "https://www.alchemists.io/projects/spek/versions",
-    "documentation_uri" => "https://www.alchemists.io/projects/spek",
+    "changelog_uri" => "https://alchemists.io/projects/spek/versions",
+    "documentation_uri" => "https://alchemists.io/projects/spek",
     "funding_uri" => "https://github.com/sponsors/bkuhlmann",
     "label" => "Spek",
     "rubygems_mfa_required" => "true",
