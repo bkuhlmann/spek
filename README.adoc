@@ -40,20 +40,58 @@ gem if you need working example.
 
 === Presenter
 
-This object wraps a `Gem::Specification` for presentation, provides semantic versioning, direct
-access to metadata information, pathnames, and other enriched information. You can obtain an
-instance via the following code:
+This object wraps the `Gem::Specification` for presentation purposes, provides semantic versioning, direct access to metadata information, pathnames, and other enriched information. You can obtain an
+instance using the following code, for example:
 
 [source,ruby]
 ----
 specification = Gem::Specification.new do |spec|
-  spec.name = "test"
+  spec.name = "demo"
   spec.version = "0.0.0"
-  spec.authors = "Jill Smith"
-  spec.summary = "A test summary."
+  spec.authors = ["Jill Smith"]
+  spec.email = ["demo@alchemists.io"]
+  spec.homepage = "https://alchemists.io/projects/demo"
+  spec.summary = "A demo summary."
+  spec.license = "Hippocratic-2.1"
+
+  spec.signing_key = Gem.default_key_path
+  spec.cert_chain = [Gem.default_cert_path]
+
+  spec.metadata = {
+    "bug_tracker_uri" => "https://github.com/bkuhlmann/demo/issues",
+    "changelog_uri" => "https://alchemists.io/projects/demo/versions",
+    "documentation_uri" => "https://alchemists.io/projects/demo",
+    "funding_uri" => "https://github.com/sponsors/bkuhlmann",
+    "label" => "Demo",
+    "rubygems_mfa_required" => "true",
+    "source_code_uri" => "https://github.com/bkuhlmann/demo"
+  }
 end
 
 presenter = Spek::Presenter.new specification
+
+presenter.allowed_push_host  # "https://rubygems.org"
+presenter.allowed_push_key   # "rubygems_api_key"
+presenter.authors            # ["Jill Smith"]
+presenter.banner             # "Demo 0.0.0: A demo summary."
+presenter.certificate_chain  # [#<Pathname:~/.gem/gem-public_cert.pem>]
+presenter.documentation_url  # "https://alchemists.io/projects/demo"
+presenter.emails             # ["demo@alchemists.io"]
+presenter.funding_url        # "https://github.com/sponsors/bkuhlmann"
+presenter.homepage_url       # "https://alchemists.io/projects/demo"
+presenter.issues_url         # "https://github.com/bkuhlmann/demo/issues"
+presenter.label              # "Demo"
+presenter.labeled_summary    # "Demo: A demo summary."
+presenter.labeled_version    # "Demo 0.0.0"
+presenter.named_version      # "demo 0.0.0"
+presenter.package_name       # "demo-0.0.0.gem"
+presenter.package_path       # #<Pathname:tmp/demo-0.0.0.gem>
+presenter.rubygems_mfa?      # true
+presenter.signing_key        # #<Pathname:~/.gem/gem-private_key.pem>
+presenter.source_path        # #<Pathname:~/.cache/.../3.2.0/gems/demo-0.0.0>
+presenter.source_url         # "https://github.com/bkuhlmann/demo"
+presenter.version            # #<struct Versionaire::Version major=0, minor=0, patch=0>
+presenter.versions_url       # "https://alchemists.io/projects/demo/versions"
 ----
 
 The presenter is a read-only object so you'll only have access to _getter_ methods which are mostly
@@ -99,7 +137,7 @@ end
 ----
 
 The picker always answers a link:https://dry-rb.org/gems/dry-monads[monad] so you can quickly
-pattern match for further action.
+link:https://alchemists.io/articles/ruby_pattern_matching[pattern match] for further action.
 
 === Versioner
 
