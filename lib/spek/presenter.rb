@@ -61,7 +61,7 @@ module Spek
 
     def label = metadata.fetch "label", "Undefined"
 
-    def labeled_summary(delimiter: " - ") = [label, summary].compress.join delimiter
+    def labeled_summary(delimiter: ": ") = [label, summary].compress.join delimiter
 
     def labeled_version = [label, version].compress.join " "
 

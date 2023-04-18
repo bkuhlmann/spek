@@ -196,11 +196,11 @@ RSpec.describe Spek::Presenter do
 
   describe "#labeled_summary" do
     it "answers label and summary" do
-      expect(presenter.labeled_summary).to eq("Undefined - A test summary.")
+      expect(presenter.labeled_summary).to eq("Undefined: A test summary.")
     end
 
     it "answers label and summary with custom delimiter" do
-      expect(presenter.labeled_summary(delimiter: ": ")).to eq("Undefined: A test summary.")
+      expect(presenter.labeled_summary(delimiter: " - ")).to eq("Undefined - A test summary.")
     end
   end
 
