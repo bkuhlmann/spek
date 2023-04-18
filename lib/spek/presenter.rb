@@ -61,13 +61,13 @@ module Spek
 
     def label = metadata.fetch "label", "Undefined"
 
-    def labeled_summary(delimiter: ": ") = [label, summary].compress.join delimiter
+    def labeled_summary(delimiter: ": ") = [label, summary].tap(&:compress!).join delimiter
 
-    def labeled_version = [label, version].compress.join " "
+    def labeled_version = [label, version].tap(&:compress!).join " "
 
-    def named_version = [name, version].compress.join " "
+    def named_version = [name, version].tap(&:compress!).join " "
 
-    def package_name = %(#{[name, version].compress.join "-"}.gem)
+    def package_name = %(#{[name, version].tap(&:compress!).join "-"}.gem)
 
     def package_path = Pathname("tmp").join package_name
 
