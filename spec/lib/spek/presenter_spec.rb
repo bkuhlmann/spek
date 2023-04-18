@@ -63,6 +63,16 @@ RSpec.describe Spek::Presenter do
     end
   end
 
+  describe "#banner" do
+    it "answers label, version, and summary" do
+      expect(presenter.banner).to eq("Undefined 0.0.0: A test summary.")
+    end
+
+    it "answers label, verison, and summary with custom delimiter" do
+      expect(presenter.banner(delimiter: " - ")).to eq("Undefined 0.0.0 - A test summary.")
+    end
+  end
+
   describe "#bindir" do
     it "answers default directory" do
       expect(presenter.bindir).to eq("bin")

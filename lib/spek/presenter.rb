@@ -45,6 +45,8 @@ module Spek
 
     def authors = Array record.author
 
+    def banner(delimiter: ": ") = [labeled_version, summary].tap(&:compress!).join delimiter
+
     def certificate_chain = Array(record.cert_chain).map { |path| Pathname path.to_s }
 
     def documentation_url = metadata.fetch "documentation_uri", ""
