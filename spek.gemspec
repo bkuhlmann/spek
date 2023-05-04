@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |spec|
   spec.name = "spek"
-  spec.version = "1.1.0"
+  spec.version = "2.0.0"
   spec.authors = ["Brooke Kuhlmann"]
   spec.email = ["brooke@alchemists.io"]
   spec.homepage = "https://alchemists.io/projects/spek"
-  spec.summary = "Enhances gem specifications with additional information and tooling."
+  spec.summary = "An enhanced gem specification wrapper."
   spec.license = "Hippocratic-2.1"
 
   spec.metadata = {
