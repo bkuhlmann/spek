@@ -10,4 +10,5 @@ end
 
 # Main namespace.
 module Spek
+  def self.loader(registry = Zeitwerk::Registry) = registry.loader_for __FILE__
 end
