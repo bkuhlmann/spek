@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "forwardable"
-require "refinements/arrays"
-require "refinements/pathnames"
-require "refinements/strings"
+require "refinements/array"
+require "refinements/pathname"
+require "refinements/string"
 require "versionaire"
 
 module Spek
@@ -11,9 +11,9 @@ module Spek
   class Presenter
     extend Forwardable
 
-    using Refinements::Arrays
-    using Refinements::Strings
-    using Refinements::Pathnames
+    using Refinements::Array
+    using Refinements::String
+    using Refinements::Pathname
     using Versionaire::Cast
 
     delegate %i[

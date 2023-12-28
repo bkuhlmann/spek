@@ -5,7 +5,7 @@ require "spec_helper"
 require "versionaire/cast"
 
 RSpec.describe Spek::Versioner do
-  using Refinements::Pathnames
+  using Refinements::Pathname
   using Versionaire::Cast
 
   subject(:versioner) { described_class.new }

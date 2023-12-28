@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require "refinements/pathnames"
+require "refinements/pathname"
 
 module Spek
   # Updates a gem specification's version.
   class Versioner
-    using Refinements::Pathnames
+    using Refinements::Pathname
 
     def self.call(version, path, ...) = new(...).call version, path
 
