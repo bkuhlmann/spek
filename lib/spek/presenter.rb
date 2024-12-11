@@ -59,7 +59,7 @@ module Spek
 
     def issues_url = metadata.fetch "bug_tracker_uri", ""
 
-    def label = metadata.fetch "label", "Undefined"
+    def label = metadata.fetch "label", ""
 
     def labeled_summary(delimiter: ": ") = [label, summary].tap(&:compress!).join delimiter
 

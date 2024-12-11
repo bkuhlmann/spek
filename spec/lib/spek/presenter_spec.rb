@@ -64,12 +64,14 @@ RSpec.describe Spek::Presenter do
   end
 
   describe "#banner" do
+    before { specification.metadata["label"] = "Test" }
+
     it "answers label, version, and summary" do
-      expect(presenter.banner).to eq("Undefined 0.0.0: A test summary.")
+      expect(presenter.banner).to eq("Test 0.0.0: A test summary.")
     end
 
     it "answers label, verison, and summary with custom delimiter" do
-      expect(presenter.banner(delimiter: " - ")).to eq("Undefined 0.0.0 - A test summary.")
+      expect(presenter.banner(delimiter: " - ")).to eq("Test 0.0.0 - A test summary.")
     end
   end
 
@@ -184,8 +186,10 @@ RSpec.describe Spek::Presenter do
   end
 
   describe "#label" do
+    before { specification.metadata["label"] = "Test" }
+
     it "answers undefined label when missing" do
-      expect(presenter.label).to eq("Undefined")
+      expect(presenter.label).to eq("Test")
     end
 
     it "answers custom label with metadata" do
@@ -195,24 +199,26 @@ RSpec.describe Spek::Presenter do
   end
 
   describe "#labeled_summary" do
+    before { specification.metadata["label"] = "Test" }
+
     it "answers label and summary" do
-      expect(presenter.labeled_summary).to eq("Undefined: A test summary.")
+      expect(presenter.labeled_summary).to eq("Test: A test summary.")
     end
 
     it "answers label and summary with custom delimiter" do
-      expect(presenter.labeled_summary(delimiter: " - ")).to eq("Undefined - A test summary.")
+      expect(presenter.labeled_summary(delimiter: " - ")).to eq("Test - A test summary.")
     end
   end
 
   describe "#labeled_version" do
+    before { specification.metadata["label"] = "Test" }
+
     it "answers default label and version" do
-      expect(presenter.labeled_version).to eq("Undefined 0.0.0")
+      expect(presenter.labeled_version).to eq("Test 0.0.0")
     end
 
     it "answers custom label and version" do
-      specification.metadata["label"] = "Test"
       specification.version = "1.2.3"
-
       expect(presenter.labeled_version).to eq("Test 1.2.3")
     end
 
@@ -221,9 +227,9 @@ RSpec.describe Spek::Presenter do
       expect(presenter.labeled_version).to eq("0.0.0")
     end
 
-    it "answers default label and version when version is missing" do
+    it "answers label and version when version is missing" do
       allow(specification).to receive(:version).and_return nil
-      expect(presenter.labeled_version).to eq("Undefined 0.0.0")
+      expect(presenter.labeled_version).to eq("Test 0.0.0")
     end
 
     it "answers version only when name and version is missing" do
