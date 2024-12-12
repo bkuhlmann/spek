@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "core"
 require "forwardable"
 require "refinements/array"
 require "refinements/pathname"
@@ -49,17 +50,17 @@ module Spek
 
     def certificate_chain = Array(record.cert_chain).map { |path| Pathname path.to_s }
 
-    def documentation_url = metadata.fetch "documentation_uri", ""
+    def documentation_url = metadata.fetch "documentation_uri", Core::EMPTY_STRING
 
     def emails = Array record.email
 
-    def funding_url = metadata.fetch "funding_uri", ""
+    def funding_url = metadata.fetch "funding_uri", Core::EMPTY_STRING
 
     def homepage_url = String record.homepage
 
-    def issues_url = metadata.fetch "bug_tracker_uri", ""
+    def issues_url = metadata.fetch "bug_tracker_uri", Core::EMPTY_STRING
 
-    def label = metadata.fetch "label", ""
+    def label = metadata.fetch "label", Core::EMPTY_STRING
 
     def labeled_summary(delimiter: ": ") = [label, summary].tap(&:compress!).join delimiter
 
@@ -77,11 +78,11 @@ module Spek
 
     def source_path = Pathname record.full_gem_path
 
-    def source_url = metadata.fetch "source_code_uri", ""
+    def source_url = metadata.fetch "source_code_uri", Core::EMPTY_STRING
 
     def version = Version record.version.to_s
 
-    def versions_url = metadata.fetch "changelog_uri", ""
+    def versions_url = metadata.fetch "changelog_uri", Core::EMPTY_STRING
 
     private
 
