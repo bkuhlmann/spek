@@ -72,7 +72,7 @@ module Spek
 
     def package_path = Pathname("tmp").join package_name
 
-    def rubygems_mfa? = metadata.fetch("rubygems_mfa_required", "false").to_bool
+    def rubygems_mfa? = metadata.fetch("rubygems_mfa_required", "false").truthy?
 
     def signing_key = Pathname record.signing_key.to_s
 
