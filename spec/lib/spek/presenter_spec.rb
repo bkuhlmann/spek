@@ -391,7 +391,7 @@ RSpec.describe Spek::Presenter do
 
   describe "#source_path" do
     it "answers gem path" do
-      expect(presenter.source_path.to_s).to match(%r(gems/test-0\.0\.0))
+      expect(presenter.source_path.to_s).to include("gems/test-0.0.0")
     end
 
     it "answers a pathname" do
