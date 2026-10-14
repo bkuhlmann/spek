@@ -8,3 +8,5 @@ detectors:
   TooManyMethods:
     exclude:
       - "Spek::Presenter"
+  UnusedParameters:
+    enabled: false
